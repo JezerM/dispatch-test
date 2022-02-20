@@ -22,6 +22,24 @@ jobs:
           inputs: "{}"
           wait-for-completion: true
       -
-        name: Print
+        name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          repo: JezerM/nody-greeter-void
+          github_token: ${{ secrets.PERSONAL_TOKEN }}
+          workflow: build.yml
+          branch: master
+          path: artifacts/
+      -
+        name: Check artifacts
         run: |
-          echo "DONE!"
+          ls artifacts/
+      -
+        name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          file: artifacts/*
+          file_glob: true
+          overwrite: true
