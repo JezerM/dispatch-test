@@ -15,7 +15,8 @@ jobs:
         name: Dispatch and wait
         uses: aurelien-baudet/workflow-dispatch@v2
         with:
-          workflow: build
+          workflow: build.yml
+          repo: JezerM/nody-greeter-void
           ref: master
           token: ${{ secrets.PERSONAL_TOKEN }}
           inputs: "{}"
