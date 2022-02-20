@@ -11,16 +11,16 @@ jobs:
     steps:
       -
         uses: actions/checkout@v2
-      -
-        name: Dispatch and wait
-        uses: aurelien-baudet/workflow-dispatch@v2
-        with:
-          workflow: build.yml
-          repo: JezerM/nody-greeter-void
-          ref: master
-          token: ${{ secrets.PERSONAL_TOKEN }}
-          inputs: "{}"
-          wait-for-completion: true
+      #-
+        #name: Dispatch and wait
+        #uses: aurelien-baudet/workflow-dispatch@v2
+        #with:
+          #workflow: build.yml
+          #repo: JezerM/nody-greeter-void
+          #ref: master
+          #token: ${{ secrets.PERSONAL_TOKEN }}
+          #inputs: "{}"
+          #wait-for-completion: true
       -
         name: Download artifact
         uses: dawidd6/action-download-artifact@v2
@@ -40,6 +40,6 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref }}
-          file: artifacts/*
+          file: artifacts/**/*.xbps
           file_glob: true
           overwrite: true
