@@ -1,0 +1,26 @@
+name: Build
+
+on: [workflow_dispatch]
+
+jobs:
+
+  dispatch_and_wait:
+    name: Dispatch and wait
+    runs-on: ubuntu-latest
+
+    steps:
+      -
+        uses: actions/checkout@v2
+      -
+        name: Dispatch and wait
+        uses: aurelien-baudet/workflow-dispatch@v2
+        with:
+          workflow: build
+          ref: master
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          inputs: "{}"
+          wait-for-completion: true
+      -
+        name: Print
+        run: |
+          echo "DONE!"
